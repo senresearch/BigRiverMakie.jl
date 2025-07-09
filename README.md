@@ -1,1 +1,1 @@
-# BigRiverPlots.jl
+# BigRiverMakie.jl
