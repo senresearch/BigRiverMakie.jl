@@ -9,7 +9,7 @@ The x_labels are the labels for the x values.
 - `x`: The x values.
 - `y`: The y values.
 - `x_labels`: The labels for the x values.
-- `kwargs`: Additional arguments to pass to the dotplot! function.
+- `kwargs`: Additional arguments to pass to the `dotplot!` function.
 """
 function dot_plot(x::Vector{<:Real}, y::Vector{<:Real}, x_labels::Vector{<:String}; kwargs...)
     fig = Figure()
