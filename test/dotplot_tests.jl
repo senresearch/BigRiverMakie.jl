@@ -263,4 +263,4 @@ end
 
     # Check that the plot was created
     @test length(ax.scene.plots) > 0
-end 
+end

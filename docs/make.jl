@@ -12,7 +12,7 @@ makedocs(;
     pages = [
         "Home" => "index.md",
         "Confidence Interval Plot" => "confidence.md",
-        "Dot Plot" => "dotplot.md"
+        "Dot Plot" => "dotplot.md",
     ]
 )
 

@@ -132,12 +132,12 @@ function calculate_jitter_shift(data, jitter_alg; base_min = -0.5, base_max = 0.
     if isempty(data)
         return Float64[]
     end
-    
+
     # For :none algorithm, return zeros
     if jitter_alg == :none
         return zeros(length(data))
     end
-    
+
     # Get base jitter array
     jitter = _jitter_array(base_min, base_max, jitter_alg, length(data))
     k = KernelDensity.kde(data, npoints = 200)

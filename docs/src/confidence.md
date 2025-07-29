@@ -1,5 +1,7 @@
 # Confidence interval plot
 
+This plot shows the confidence interval for each category.
+
 ```@setup example_data
 function generate_confidence_data(n::Int = 8)
     # Random effect sizes (normally distributed around 0)
@@ -27,7 +29,7 @@ confidence_plot(x_data, y_labels, error_values)
 ```
 
 ```@docs
-confidence_plot
+BigRiverMakie.confidence_plot
 BigRiverMakie.confidenceplot
 BigRiverMakie.confidenceplot!
 BigRiverMakie.ConfidencePlot
