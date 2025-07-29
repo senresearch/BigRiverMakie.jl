@@ -9,12 +9,14 @@ The y-axis is labeled with `y_labels`.
 - `x_data`: A vector of x values.
 - `y_labels`: A vector of y labels.
 - `error_values`: A vector of error values.
+- `kwargs`: Additional arguments to pass to the confidenceplot! function.
 """
 function confidence_plot(
         x_data::Vector{<:Real},
         y_labels::Vector{<:AbstractString},
         error_values::Vector{<:Real};
-        kwargs...)
+        kwargs...
+    )
     fig = Figure()
     ax = Axis(
         fig[1, 1],
@@ -37,7 +39,8 @@ function confidence_plot!(
         x_data::Vector{<:Real},
         y_labels::Vector{<:AbstractString},
         error_values::Vector{<:Real};
-        kwargs...)
+        kwargs...
+    )
     ax.yticks = (1:length(y_labels), y_labels)
     ax.xlabel = "Effect Size"
     ax.title = "Confidence Interval Plot"
@@ -46,7 +49,7 @@ function confidence_plot!(
     ax.yticksvisible = false
     ax.leftspinevisible = false
     ax.rightspinevisible = false
-    confidenceplot!(ax, x_data, error_values; kwargs...)
+    return confidenceplot!(ax, x_data, error_values; kwargs...)
 end
 
 """
@@ -121,11 +124,15 @@ function Makie.plot!(p::ConfidencePlot)
         cmap = Makie.to_colormap(scattercolors)
         return ifelse.(x_significant, first(cmap), last(cmap))
     end
-    errorbars!(p, p.attributes, p.x, p.labels, p.ϵ; direction = :x,
-        whiskerwidth = p.whiskerwidth, color = p.errorbarcolor)
-    scatter!(p, p.attributes, p.x, p.labels; marker = p.markershape,
+    errorbars!(
+        p, p.attributes, p.x, p.labels, p.ϵ; direction = :x,
+        whiskerwidth = p.whiskerwidth, color = p.errorbarcolor
+    )
+    scatter!(
+        p, p.attributes, p.x, p.labels; marker = p.markershape,
         markersize = p.markersize, color = p.markercolor,
-        strokecolor = p.scatterbordercolor, strokewidth = p.scatterborderwidth)
+        strokecolor = p.scatterbordercolor, strokewidth = p.scatterborderwidth
+    )
     vlines!(p, 0; color = p.linecolor, linestyle = p.linestyle)
     return p
 end
