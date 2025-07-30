@@ -9,7 +9,7 @@ The y-axis is labeled with `y_labels`.
 - `x_data`: A vector of x values.
 - `y_labels`: A vector of y labels.
 - `error_values`: A vector of error values.
-- `kwargs`: Additional arguments to pass to the confidenceplot! function.
+- `kwargs`: Additional arguments to pass to the `confidenceplot!` function.
 """
 function confidence_plot(
         x_data::Vector{<:Real},

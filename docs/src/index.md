@@ -1,7 +1,32 @@
-```@meta
-CurrentModule = BigRiverMakie
+```@raw html
+---
+# https://vitepress.dev/reference/default-theme-home-page
+layout: home
+
+hero:
+  name: "BigRiverMakie.jl"
+  tagline: "Recipes for plots commonly used for data visualization and exploratory analysis."
+---
 ```
 
-# BigRiverMakie
+````@raw html
+<div class="vp-doc" style="width:80%; margin:auto">
 
-Documentation for [BigRiverMakie](https://github.com/senresearch/BigRiverMakie.jl). This package is built on top of [Makie.jl](https://makie.org/) and provides recipes for plots commonly used with [BigRiverMetabolomics.jl](https://github.com/senresearch/BigRiverMetabolomics.jl).
+<h2> Installation </h2>
+
+You can install BigRiverMakie using Julia's package manager `Pkg`:
+
+```julia
+julia> using Pkg
+
+julia> Pkg.add("BigRiverMakie")
+```
+
+Or you can use the package mode in the REPL:
+
+```julia
+] add BigRiverMakie
+```
+
+</div>
+````
