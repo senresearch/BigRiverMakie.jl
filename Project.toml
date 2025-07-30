@@ -1,6 +1,6 @@
 name = "BigRiverMakie"
 uuid = "2073ee19-d2a6-424f-ac95-ea3ed30aeccf"
-authors = ["Abhirath Anand <74202102+theabhirath@users.noreply.github.com>", "Gregory Farage <faragegr@gmail.com>", "Saunak Sen <sen@uthsc.edu>"]
+authors = ["Abhirath Anand <74202102+theabhirath@users.noreply.github.com>", "Gregory Farage", "Saunak Sen"]
 version = "0.1.0"
 
 
