@@ -16,7 +16,7 @@ function generate_confidence_data(n::Int = 8)
     # categories = ["Treatment A", "Treatment B", "Control", "Placebo", 
     #               "Method 1", "Method 2", "Baseline", "Enhanced"]
 
-    return x_data, categories, errors
+    return x_data, (1:n, categories), errors
 end
 
 x_data, y_labels, error_values = generate_confidence_data(6)
@@ -25,11 +25,10 @@ x_data, y_labels, error_values = generate_confidence_data(6)
 ```@example example_data
 using CairoMakie, BigRiverMakie
 
-confidence_plot(x_data, y_labels, error_values)
+confidenceplot(x_data, error_values, axis = (yticks = y_labels, ))
 ```
 
 ```@docs
-BigRiverMakie.confidence_plot
 BigRiverMakie.confidenceplot
 BigRiverMakie.confidenceplot!
 BigRiverMakie.ConfidencePlot

@@ -1,53 +1,4 @@
 """
-    dot_plot(x, y, x_labels; kwargs...)
-
-
-Plots a dotplot. The x values are the categories and the y values are the data points.
-The x_labels are the labels for the x values.
-
-# Arguments
-- `x`: The x values.
-- `y`: The y values.
-- `x_labels`: The labels for the x values.
-- `kwargs`: Additional arguments to pass to the `dotplot!` function.
-"""
-function dot_plot(x::Vector{<:Real}, y::Vector{<:Real}, x_labels::Vector{<:String}; kwargs...)
-    fig = Figure()
-    ax = Axis(
-        fig[1, 1],
-        xticks = (1:length(x_labels), x_labels),
-        xlabel = "Super Class",
-        title = "Dot Plot",
-        leftspinevisible = false,
-        rightspinevisible = false,
-        topspinevisible = false,
-        xgridvisible = false,
-        ygridvisible = false,
-        yticksvisible = false
-    )
-    dotplot!(ax, x, y; kwargs...)
-    return fig
-end
-
-function dot_plot!(
-        ax,
-        x::Vector{<:Real},
-        y::Vector{<:Real},
-        x_labels::Vector{<:String};
-        kwargs...
-    )
-    ax.xticks = (1:length(x_labels), x_labels)
-    ax.xlabel = "Super Class"
-    ax.title = "Dot Plot"
-    ax.xgridvisible = false
-    ax.ygridvisible = false
-    ax.yticksvisible = false
-    ax.leftspinevisible = false
-    ax.rightspinevisible = false
-    return dotplot!(ax, x, y; kwargs...)
-end
-
-"""
     dotplot(x, y; kwargs...)
     dotplot!(x, y; kwargs...)
 
@@ -95,6 +46,15 @@ central points. The central points represent each category.
 
     # All other attributes of Scatter are inherited and passed to the scatter plot
     Makie.documented_attributes(Scatter)...
+end
+
+function Makie.preferred_axis_attributes(::Type{Axis}, ::DotPlot)
+    return (
+        xgridvisible = false, ygridvisible = false,
+        leftspinevisible = false, rightspinevisible = false,
+        topspinevisible = false, yticksvisible = false,
+        title = "Dot Plot", xlabel = "Super Class"
+    )
 end
 
 function Makie.plot!(p::DotPlot)

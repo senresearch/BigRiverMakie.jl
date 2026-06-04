@@ -1,4 +1,4 @@
-@testitem "confidence_plot basic functionality" begin
+@testitem "confidenceplot basic functionality" begin
     using Test
     using BigRiverMakie
     import Makie: Figure, Axis
@@ -7,13 +7,13 @@
     y_labels = ["A", "B", "C", "D", "E"]
     error_values = [0.2, 0.15, 0.3, 0.25, 0.18]
 
-    fig = confidence_plot(x_data, y_labels, error_values)
+    fig = confidenceplot(x_data, error_values, y_labels)
 
     @test fig isa Figure
     @test length(fig.content) > 0
 end
 
-@testitem "confidence_plot! basic functionality" begin
+@testitem "confidenceplot! basic functionality" begin
     using Test
     using BigRiverMakie
     import Makie: Figure, Axis
@@ -25,7 +25,7 @@ end
     y_labels = ["A", "B", "C", "D", "E"]
     error_values = [0.2, 0.15, 0.3, 0.25, 0.18]
 
-    confidence_plot!(ax, x_data, y_labels, error_values)
+    confidenceplot!(ax, x_data, y_labels, error_values)
 
     @test ax.yticks[] == (1:5, ["A", "B", "C", "D", "E"])
     @test ax.xlabel[] == "Effect Size"

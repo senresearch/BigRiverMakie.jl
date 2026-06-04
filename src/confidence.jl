@@ -1,58 +1,4 @@
 """
-    confidence_plot(x_data, y_labels, error_values; kwargs...)
-
-Generates a confidence interval plot around `x_data` with error bars as given by `error_values`.
-The y-axis is labeled with `y_labels`.
-
-# Arguments
-
-- `x_data`: A vector of x values.
-- `y_labels`: A vector of y labels.
-- `error_values`: A vector of error values.
-- `kwargs`: Additional arguments to pass to the `confidenceplot!` function.
-"""
-function confidence_plot(
-        x_data::Vector{<:Real},
-        y_labels::Vector{<:AbstractString},
-        error_values::Vector{<:Real};
-        kwargs...
-    )
-    fig = Figure()
-    ax = Axis(
-        fig[1, 1],
-        yticks = (1:length(y_labels), y_labels),
-        xlabel = "Effect Size",
-        title = "Confidence Interval Plot",
-        leftspinevisible = false,
-        rightspinevisible = false,
-        topspinevisible = false,
-        xgridvisible = false,
-        ygridvisible = false,
-        yticksvisible = false
-    )
-    confidenceplot!(ax, x_data, error_values; kwargs...)
-    return fig
-end
-
-function confidence_plot!(
-        ax,
-        x_data::Vector{<:Real},
-        y_labels::Vector{<:AbstractString},
-        error_values::Vector{<:Real};
-        kwargs...
-    )
-    ax.yticks = (1:length(y_labels), y_labels)
-    ax.xlabel = "Effect Size"
-    ax.title = "Confidence Interval Plot"
-    ax.xgridvisible = false
-    ax.ygridvisible = false
-    ax.yticksvisible = false
-    ax.leftspinevisible = false
-    ax.rightspinevisible = false
-    return confidenceplot!(ax, x_data, error_values; kwargs...)
-end
-
-"""
     confidenceplot!(x, ϵ; kwargs...)
     confidenceplot(x, ϵ; kwargs...)
 
@@ -63,7 +9,7 @@ the point is colored dark blue, otherwise it is colored light blue.
 
 This plot is a Makie recipe and does not set any theming options, or even the axis labels. It can
 of course be customized with the same variety that any Makie plot can be, but for a plot with more
-default options and the choice to pass in axis labels, see also [`confidence_plot`](@ref).
+default options and the choice to pass in axis labels, see also [`confidenceplot`](@ref).
 
 # Arguments
 
@@ -135,4 +81,14 @@ function Makie.plot!(p::ConfidencePlot)
     )
     vlines!(p, 0; color = p.linecolor, linestyle = p.linestyle)
     return p
+end
+
+function Makie.preferred_axis_attributes(::Type{Axis}, ::ConfidencePlot)
+    return (
+        yticks = (1:length(y_labels), y_labels),
+        xgridvisible = false, ygridvisible = false,
+        leftspinevisible = false, rightspinevisible = false,
+        topspinevisible = false, yticksvisible = false,
+        title = "Confidence Interval Plot", xlabel = "Effect Size"
+    )
 end
