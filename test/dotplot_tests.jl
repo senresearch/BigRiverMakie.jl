@@ -1,4 +1,4 @@
-@testitem "dot_plot basic functionality" begin
+@testitem "dotplot basic functionality" begin
     using Test
     using BigRiverMakie
     import Makie: Figure, Axis
@@ -7,13 +7,13 @@
     y = [0.5, 1.2, -0.3, 0.8, 1.5, -0.7]
     x_labels = ["A", "B", "C"]
 
-    fig = dot_plot(x, y, x_labels)
+    fig = dotplot(x, y, x_labels)
 
     @test fig isa Figure
     @test length(fig.content) > 0
 end
 
-@testitem "dot_plot! basic functionality" begin
+@testitem "dotplot! basic functionality" begin
     using Test
     using BigRiverMakie
     import Makie: Figure, Axis
@@ -25,7 +25,7 @@ end
     y = [0.5, 1.2, -0.3, 0.8, 1.5, -0.7]
     x_labels = ["A", "B", "C"]
 
-    dot_plot!(ax, x, y, x_labels)
+    dotplot!(ax, x, y, x_labels)
 
     @test ax.xticks[] == (1:3, ["A", "B", "C"])
     @test ax.xlabel[] == "Super Class"
